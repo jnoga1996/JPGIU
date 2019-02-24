@@ -1,0 +1,12 @@
+(defun wykres (f a b)
+    (with-open-file (stream "wykres.txt" :direction :output)
+        (do ((i a (incf i 0.1)))
+        ((> i b) t)
+            (setq res f x i)
+            (format stream (format nil "~5$ ~5$" i (eval f)))
+            (terpri stream)
+        )
+    )
+)
+
+(wykres '(+ (sin x)) -10.0 10.0)
