@@ -31,6 +31,14 @@
     (* 3.14 (r a) (r a))
 )
 
+(defmethod odl ((a punkt)(b kolo))
+    (abs (- (sqrt (+ (expt (- (x b) (x a)) 2) (expt (- (y b) (y a)) 2)))(r b)))
+)
+
+(defmethod odl ((a kolo)(b kolo))
+    (abs (- (sqrt (+ (expt (- (x b) (x a)) 2) (expt (- (y b) (y a)) 2)))(+ (r a)(r b))))
+)
+
 (defmethod print_data((a kolo))
     (print (format nil "Kolo: x = ~$, y = ~$, r = ~$" (x a)(y a)(r a)))
 )
@@ -45,6 +53,13 @@
 
 (defmethod pole ((a prostokat))
     (* (a a) (b a))
+)
+
+;na podstawie https://math.stackexchange.com/questions/2724537/finding-the-clear-spacing-distance-between-two-rectangles
+(defmethod odl ((a prostokat)(b prostokat))
+    (max (- (abs (- (x a) (x b)))(/ (+ (a a)(a b)) 2) )
+         (- (abs (- (y a) (y b)))(/ (+ (b a)(b b)) 2) )
+    )
 )
 
 (defmethod print_data((a prostokat))
@@ -104,3 +119,4 @@
 
 (print (format nil "Odleglosc miedzy prostokatami: ~$" (odl prostokat prostokat2)))
 (print (format nil "Odleglosc miedzy prostokatem a punktem: ~$" (odl prostokat punkt)))
+(print (format nil "Odleglosc miedzy prostokatem a prostokatem: ~$" (odl prostokat prostokat2)))
