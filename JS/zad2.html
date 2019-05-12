@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title
+</head>
+<body>
+	<form onchange="f()">
+		<input name="a">+<input name="c">=<input name="c">
+	</form>
+
+	<script>
+		function f(){
+			//alert(document.getElementsByTagName("input")[0].value);
+			var inputs = document.getElementsByTagName("input");
+			var a = Number(inputs[0].value);
+			var b = Number(inputs[1].value);
+			var c = a + b;
+			inputs[2].value = c;
+		}
+	</script>
+</body>
+</html> 

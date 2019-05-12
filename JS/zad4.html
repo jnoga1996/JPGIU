@@ -1,0 +1,48 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<style>
+	img {height:300px; width:300px}
+</style>
+<title>Page Title</title>
+<script>
+	var countATag = function() {
+		var tags = document.getElementsByTagName("a");
+		alert("Number of <a> tags in document:" + tags.length);
+	}
+	
+	function getTagAndData() {
+		var tags = document.getElementsByTagName("a");
+		var result = [];
+		for (var i = 0; i < tags.length; i++) {
+			var res = [tags[i], tags[i].innerHTML];
+			result[i] = res;
+		}
+		alert(result);
+		return result;
+	}
+	
+	function getImgSrc() {
+		var tags = document.getElementsByTagName("img");
+		var srcArray = [];
+		for (var i = 0; i < tags.length; i++) {
+			srcArray[i] = tags[i].src;
+		}
+		alert(srcArray);
+	}
+</script>
+</head>
+<body>
+	<a href="https://www.google.com">a1</a>
+	<a href="https://www.onet.pl">a2</a>
+	<br>
+	<img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80">
+	<img src="https://www.petmd.com/sites/default/files/Acute-Dog-Diarrhea-47066074.jpg">
+	<br>
+	<button onclick="countATag()">Count a tags</button>
+	<button onclick="getTagAndData()">Get a data</button>
+	<button onclick="getImgSrc()">Get image data</button>
+</body>
+</html> 
+
+

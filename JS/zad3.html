@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+	<script>
+		var getNumber = function(id) {
+			var data = document.getElementById("output");
+			data.value += this.id;			
+		}
+		var addNumber = function() {
+			var data = document.getElementById("output");
+			data.value += "+";
+		}
+		var operator = function(op) {
+			var data = document.getElementById("output");
+			data.value += op;
+		}
+		var reset = function() {
+			document.getElementById("output").value = "";		
+		}
+		var calculateResult = function() {
+			var data = document.getElementById("output");
+			data.value = eval(data.value);		
+		}
+	</script>
+</head>
+<body>
+		<input id="output" name="result"><br>
+		<button id="add" onclick="operator('+')">+</button>
+		<button id="sub" onclick="operator('-')">-</button>
+		<button id="mul" onclick="operator('*')">*</button><br>
+		<button id="div" onclick="operator('/')">/</button>
+		<button id="calculate" onclick="calculateResult()">=</button>
+		<button id="clear" onclick="reset()">c</button><br>
+		<button id="leftParenthesis" onclick="operator('(')">(</button>
+		<button id="rightParenthesis" onclick="operator(')')">)</button><br>
+		<div id="numbers"></div>
+		<script>
+		for (var i=0; i<10;i++) {
+			var button = document.createElement("input");
+			button.id = i;
+			button.type = "button";
+			button.value = i;
+			button.addEventListener("click", getNumber);
+			if (i%3==0) {
+				var br = document.createElement("br");
+				document.body.appendChild(br);
+			}
+			document.body.appendChild(button);		
+		}
+		</script>
+
+
+</body>
+</html> 

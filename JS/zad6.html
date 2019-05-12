@@ -1,0 +1,63 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<script>
+var fig=[
+	{name:"Punkt",x:10,y:30},
+	{name:"Kolo",x:10,y:10,r:4,color:"green"},
+	{name:"Prostokat",x:50,y:60,a:20,b:10,color:"red"},
+	{name:"Wielokat",x:[10, 30, 50, 100],y:[10, 50, 80, 60],color:"blue"}
+	];
+	
+function draw(figures, canvas) {
+	if (canvas.getContext) {
+		var ctx = canvas.getContext('2d');
+		for (var i = 0; i < figures.length; i++) {
+			var currentFig = figures[i];
+			
+			if (currentFig.name == "Punkt") {
+				ctx.fillRect(currentFig.x, currentFig.y, 1, 1);
+			}
+			
+			if (currentFig.name == "Kolo") {
+				ctx.arc(currentFig.x, currentFig.y, currentFig.r, 0, 2 * Math.PI);
+				ctx.fillStyle = currentFig.color;
+				ctx.fill();
+			}
+			
+			if (currentFig.name == "Prostokat") {
+				ctx.fillStyle = currentFig.color;
+				ctx.fillRect(currentFig.x, currentFig.y, currentFig.a, currentFig.b);
+			}
+			
+			if (currentFig.name == "Wielokat") {
+				ctx.fillStyle = currentFig.color;
+				ctx.beginPath();
+				
+				ctx.moveTo(currentFig.x[0], currentFig.y[0]);			
+				for(var i = 0; i < currentFig.x.length; i++) {
+					ctx.lineTo(currentFig.x[i], currentFig.y[i]);
+				}		
+				
+				ctx.closePath();
+				ctx.fill();
+				
+			}
+		}
+	}
+}
+
+function drawAdapter() {
+	draw(fig, document.getElementById("drawing"));
+}
+</script>
+</head>
+<body>
+	<canvas id="drawing" width="450" height="300">
+	</canvas>
+
+	<button onclick="drawAdapter()">draw</button>
+</body>
+</html> 
+

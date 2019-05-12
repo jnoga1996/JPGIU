@@ -10,7 +10,7 @@
 )
 
 (defmethod pole ((a punkt))
-    nil
+    0
 )
 
 (defmethod odl ((a punkt)(b punkt))
@@ -32,11 +32,11 @@
 )
 
 (defmethod odl ((a punkt)(b kolo))
-    (abs (- (sqrt (+ (expt (- (x b) (x a)) 2) (expt (- (y b) (y a)) 2)))(r b)))
+    (max 0 (abs (- (sqrt (+ (expt (- (x b) (x a)) 2) (expt (- (y b) (y a)) 2)))(r b))))
 )
 
 (defmethod odl ((a kolo)(b kolo))
-    (abs (- (sqrt (+ (expt (- (x b) (x a)) 2) (expt (- (y b) (y a)) 2)))(+ (r a)(r b))))
+    (max 0 (abs (- (sqrt (+ (expt (- (x b) (x a)) 2) (expt (- (y b) (y a)) 2)))(+ (r a)(r b)))))
 )
 
 (defmethod print_data((a kolo))
@@ -55,10 +55,39 @@
     (* (a a) (b a))
 )
 
+;    Point = (px, py)
+;    Rectangle = (rx, ry, rwidth, rheight) // (top left corner, dimensions)
+;    var cx = Math.max(Math.min(px, rx+rwidth ), rx);
+;    var cy = Math.max(Math.min(py, ry+rheight), ry);
+;    return Math.sqrt( (px-cx)*(px-cx) + (py-cy)*(py-cy) );
+(defmethod odl ((a punkt)(b prostokat))
+    (let 
+        (
+            (dX (max (min (x a)(+ (x b) (/ (a b) 2))) (x b)))
+            (dY (max (min (y a)(+ (y b) (/ (b b) 2))) (y b)))
+        )
+        (max 0 (sqrt (+ (* (- (x a) dx)(- (x a) dx)) (* (- (y a) dy)(- (y a) dy)))))
+    )
+)
+
+
 ;na podstawie https://math.stackexchange.com/questions/2724537/finding-the-clear-spacing-distance-between-two-rectangles
 (defmethod odl ((a prostokat)(b prostokat))
-    (max (- (abs (- (x a) (x b)))(/ (+ (a a)(a b)) 2) )
-         (- (abs (- (y a) (y b)))(/ (+ (b a)(b b)) 2) )
+    (max 0 (- (abs (- (x a) (x b)))(/ (+ (a a)(a b)) 2) )
+           (- (abs (- (y a) (y b)))(/ (+ (b a)(b b)) 2) )
+    )
+)
+
+(defmethod odl ((a kolo)(b prostokat))
+    ;DeltaX = CircleX - Max(RectX - RectHalfWidth, Min(CircleX, RectX + RectHalfWidth));
+    ;DeltaY = CircleY - Max(RectY - RectHalfHeight, Min(CircleY, RectY + RectHalfHeight));
+    ;return (DeltaX * DeltaX + DeltaY * DeltaY) < (CircleRadius * CircleRadius);
+    (let 
+        (
+            (deltaX (- (x a) (max (- (x b)(/ (a b) 2)) (min (x a) (+ (x b) (/ (a b) 2))))))
+            (deltaY (- (y a) (max (- (y b)(/ (b b) 2)) (min (y a) (+ (y b) (/ (b b) 2))))))  
+        )
+        (max 0 (- (sqrt (+ (* deltaX deltaX)(* deltaY deltaY))) (r a))) 
     )
 )
 
@@ -95,7 +124,7 @@
 (setf (y kolo2) 22)
 (setf (r kolo2) 3)
 (print_data kolo2)
-(print (pole kolo2))
+(print (format nil "Pole kola: ~$"(pole kolo2)))
 
 (print (format nil "Odleglosc miedzy kolami: ~$" (odl kolo kolo2)))
 
@@ -105,9 +134,6 @@
 (setf (a prostokat) 5)
 (setf (b prostokat) 7)
 (print_data prostokat)
-(print (pole prostokat))
-
-(print (format nil "Odleglosc miedzy prostokatem a kolem: ~$" (odl prostokat kolo)))
 
 (setf prostokat2 (make-instance 'prostokat))
 (setf (x prostokat2) 10)
@@ -115,8 +141,9 @@
 (setf (a prostokat2) 3)
 (setf (b prostokat2) 10)
 (print_data prostokat2)
-(print (pole prostokat2))
 
-(print (format nil "Odleglosc miedzy prostokatami: ~$" (odl prostokat prostokat2)))
+(print (format nil "Pole prostokata: ~$" (pole prostokat2)))
 (print (format nil "Odleglosc miedzy prostokatem a punktem: ~$" (odl prostokat punkt)))
 (print (format nil "Odleglosc miedzy prostokatem a prostokatem: ~$" (odl prostokat prostokat2)))
+(print (format nil "Odleglosc miedzy kolem a prostokatem: ~$" (odl kolo prostokat)))
+(print (format nil "Odleglosc miedzy punktem a prostokatem: ~$" (odl punkt prostokat)))

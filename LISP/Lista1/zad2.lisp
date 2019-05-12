@@ -1,7 +1,7 @@
 (defun wiekszy(a b)
     (if (> a b)
-        (list a)
-        (list b)
+        a
+        b
     )
 )
 
