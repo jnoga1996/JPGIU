@@ -1,0 +1,11 @@
+C:\Users\286020\Desktop\Programming\JPGIU\NET\Lista2zad2\bin\Debug\netcoreapp2.2\Lista2zad2.deps.json
+C:\Users\286020\Desktop\Programming\JPGIU\NET\Lista2zad2\bin\Debug\netcoreapp2.2\Lista2zad2.runtimeconfig.json
+C:\Users\286020\Desktop\Programming\JPGIU\NET\Lista2zad2\bin\Debug\netcoreapp2.2\Lista2zad2.runtimeconfig.dev.json
+C:\Users\286020\Desktop\Programming\JPGIU\NET\Lista2zad2\bin\Debug\netcoreapp2.2\Lista2zad2.dll
+C:\Users\286020\Desktop\Programming\JPGIU\NET\Lista2zad2\bin\Debug\netcoreapp2.2\Lista2zad2.pdb
+C:\Users\286020\Desktop\Programming\JPGIU\NET\Lista2zad2\obj\Debug\netcoreapp2.2\Lista2zad2.csprojAssemblyReference.cache
+C:\Users\286020\Desktop\Programming\JPGIU\NET\Lista2zad2\obj\Debug\netcoreapp2.2\Lista2zad2.csproj.CoreCompileInputs.cache
+C:\Users\286020\Desktop\Programming\JPGIU\NET\Lista2zad2\obj\Debug\netcoreapp2.2\Lista2zad2.AssemblyInfoInputs.cache
+C:\Users\286020\Desktop\Programming\JPGIU\NET\Lista2zad2\obj\Debug\netcoreapp2.2\Lista2zad2.AssemblyInfo.cs
+C:\Users\286020\Desktop\Programming\JPGIU\NET\Lista2zad2\obj\Debug\netcoreapp2.2\Lista2zad2.dll
+C:\Users\286020\Desktop\Programming\JPGIU\NET\Lista2zad2\obj\Debug\netcoreapp2.2\Lista2zad2.pdb
